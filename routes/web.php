@@ -2,6 +2,8 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,6 +15,12 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+
+$router->get("api-cars/cars", "CarsController@getAll");
+
+$router->group(["prefix" => "api/car"], function () use ($router) {
+    $router->get("/{id}", "CarsController@get");
+    $router->post("/", "CarsController@store");
+    $router->put("/{id}", "CarsController@update");
+    $router->delete("/{id}", "CarsController@delete");
 });
