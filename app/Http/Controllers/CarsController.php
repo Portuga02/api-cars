@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+
 class CarsController extends Controller
 {
     /**
@@ -23,12 +24,18 @@ class CarsController extends Controller
 
     public function get($id)
     {
-        return "get" . $id;
+        return "iD Selecionado é o ID de Número " . $id;
     }
     public function store(Request $request)
     {
         dd($request->all());
     }
-
-    
+    public function update(Request $request, $id)
+    {
+        dd($id, $request->all());
+    }
+    public function delete($id)
+    {
+        dd($id);
+    }
 }
