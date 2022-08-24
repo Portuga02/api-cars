@@ -2,40 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CarsModel;
 
 use Illuminate\Http\Request;
 
 class CarsController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    
+    private $model;
+
+    public function __construct(CarsModel $cars)
     {
-        //
+        $this->model = $cars;
     }
 
     public function getAll()
     {
-        return "Chegou no get all";
+        $cars = $this->model->all();
+
+        return response()->json($cars);
     }
 
     public function get($id)
     {
-        return "iD Selecionado é o ID de Número " . $id;
+      
+        $car = $this->model->find($id);
+        dd($car);
+        
+        return response()->json($car);
     }
     public function store(Request $request)
     {
-        dd($request->all());
+        $car = $this->model->crate($request->all());
+        return response()->json($car);
     }
     public function update(Request $request, $id)
     {
-        dd($id, $request->all());
+        $car = $this->model->find($id)
+            ->update($request->all());
+
+        return response()->json($car);
     }
     public function delete($id)
     {
-        dd($id);
+
+        $car = $this->model->find($id)
+            ->delete();
+
+        return response()->json(null);
     }
 }
