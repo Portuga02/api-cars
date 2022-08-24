@@ -17,7 +17,7 @@ class CarsModel extends Model
         'date'
     ];
     protected $casts = [
-        'date' => 'Timestamp'
+        'date' => 'timestamp'
     ];
 
     public $timestamps = false;

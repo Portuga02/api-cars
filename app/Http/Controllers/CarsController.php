@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class CarsController extends Controller
 {
-    
+
     private $model;
 
     public function __construct(CarsModel $cars)
@@ -25,15 +25,15 @@ class CarsController extends Controller
 
     public function get($id)
     {
-      
+
         $car = $this->model->find($id);
-        dd($car);
-        
+
+
         return response()->json($car);
     }
     public function store(Request $request)
     {
-        $car = $this->model->crate($request->all());
+        $car = $this->model->create($request->all());
         return response()->json($car);
     }
     public function update(Request $request, $id)
